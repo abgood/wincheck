@@ -1,0 +1,39 @@
+# Project: check
+# Makefile created by Dev-C++ 4.9.9.2
+
+CPP  = g++.exe
+CC   = gcc.exe
+WINDRES = windres.exe
+RES  = 
+OBJ  = ping.o resolve.o check.o collect.o $(RES)
+LINKOBJ  = ping.o resolve.o check.o collect.o $(RES)
+LIBS =  -L"D:/install/Dev-Cpp/lib" -lmysql -lws2_32  
+INCS =  -I"D:/install/Dev-Cpp/include" 
+CXXINCS =  -I"D:/install/Dev-Cpp/lib/gcc/mingw32/3.4.2/include"  -I"D:/install/Dev-Cpp/include/c++/3.4.2/backward"  -I"D:/install/Dev-Cpp/include/c++/3.4.2/mingw32"  -I"D:/install/Dev-Cpp/include/c++/3.4.2"  -I"D:/install/Dev-Cpp/include" 
+BIN  = check.exe
+CXXFLAGS = $(CXXINCS)  
+CFLAGS = $(INCS)  
+RM = rm -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before check.exe all-after
+
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CC) $(LINKOBJ) -o "check.exe" $(LIBS)
+
+ping.o: ping.c
+	$(CC) -c ping.c -o ping.o $(CFLAGS)
+
+resolve.o: resolve.c
+	$(CC) -c resolve.c -o resolve.o $(CFLAGS)
+
+check.o: check.c
+	$(CC) -c check.c -o check.o $(CFLAGS)
+
+collect.o: collect.c
+	$(CC) -c collect.c -o collect.o $(CFLAGS)
